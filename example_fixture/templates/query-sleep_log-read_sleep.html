@@ -1,0 +1,33 @@
+{% extends "default:query.html" %}
+
+{% block content %}
+<div style="width: 1000px">
+        <script type="application/vnd.vegalite+json">
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "description": "sleep quality over time",
+    "mark": "line",
+    "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "subjective_quality", "type": "quantitative", "aggregate": "average"}
+    }
+}
+        </script>
+</div>
+<div style="width: 1000px">
+        <script type="application/vnd.vegalite+json">
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "description": "sleep wakeup time over time",
+    "mark": "line",
+    "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "wakeup_time", "type": "quantitative", "aggregate": "average"}
+    }
+}
+        </script>
+</div>
+{{ super() }}
+{% endblock %}
