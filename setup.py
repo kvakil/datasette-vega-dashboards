@@ -19,7 +19,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Keyhan Vakil",
     author_email="kvakil@pypa.kvakil.me",
-    url="https://git.sr.ht/~kvakil/datasette-vega-dashboards",
+    url="https://github.com/kvakil/datasette-vega-dashboards",
     license="Apache License, Version 2.0",
     classifiers=[
         "Framework :: Datasette",
