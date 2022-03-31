@@ -2,9 +2,10 @@
 
 [![PyPI](https://img.shields.io/pypi/v/datasette-vega-dashboards.svg)](https://pypi.org/project/datasette-vega-dashboards/)
 
-![Example Screenshot](https://raw.githubusercontent.com/kvakil/datasette-vega-dashboards/master/example_fixture/screenshot.png)
+Build custom Vega/Vega-Lite dashboards in Datasette, for
+presentation-ready plots and visualizations.
 
-Build custom Vega/Vega-Lite dashboards in Datasette.
+![Example Screenshot](https://raw.githubusercontent.com/kvakil/datasette-vega-dashboards/master/example_fixture/screenshot.png)
 
 ## Installation
 
