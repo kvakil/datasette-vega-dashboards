@@ -2,6 +2,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/datasette-vega-dashboards.svg)](https://pypi.org/project/datasette-vega-dashboards/)
 
+![Example Screenshot](https://raw.githubusercontent.com/kvakil/datasette-vega-dashboards/master/example_fixture/screenshot.png)
+
 Build custom Vega/Vega-Lite dashboards in Datasette.
 
 ## Installation
@@ -10,16 +12,25 @@ Install this plugin in the same environment as Datasette.
 
     $ datasette install datasette-vega-dashboards
 
-## Usage
+## Tutorial
 
 See the example fixture in `example_fixture` for a minimal example.
+You can run the fixture via:
+
+```
+datasette -m metadata.json --template-dir templates/ sleep_log.db
+```
+
+and then open
+[http://127.0.0.1:8001/sleep\_log/read\_sleep](http://127.0.0.1:8001/sleep_log/read_sleep)
+to see the dashboard.
 
 In the minimal example, we create a canned query in `metadata.json`:
 
 ```json
 "read_sleep": {
   "hide_sql": true,
-  "sql": "SELECT * FROM sleep_log ORDER BY date DESC LIMIT 20",
+  "sql": "SELECT * FROM (SELECT * FROM sleep_log ORDER BY date DESC LIMIT 7) ORDER BY date",
   "write": false
 }
 ```
@@ -40,25 +51,21 @@ CSS styling you want (such as setting the width or height).
 
 ```html
 <div style="width: 1000px">
-<script type="application/vnd.vegalite+json">
-{
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "container",
-    "description": "sleep quality over time",
-    "mark": "line",
-    "encoding": {
-        "x": {"field": "date", "type": "temporal"},
-        "y": {"field": "subjective_quality", "type": "quantitative", "aggregate": "average"}
-    }
-}
-</script>
+    <script type="application/vnd.vegalite+json">
+    /* insert vegalite spec here */
+    </script>
+</div>
+<div style="width: 1000px">
+    <script type="application/vnd.vega+json">
+    /* or, insert a vega spec here */
+    </script>
 </div>
 ```
 
-Note that the Vega-Lite spec above does not contain a `data` field --
-any data field will be replaced by the plugin based on the data returned
-by the canned query. For Vega specs, the data field will be prepended
-with a new dataset with the name `data`.
+Note that the Vega-Lite spec need not contain a `data` field -- any data
+field will be replaced by the plugin based on the data returned by the
+canned query. For Vega specs, the data field will be prepended with a
+new dataset with the name `data`.
 
 ## Development
 

@@ -5,14 +5,9 @@
         "id": "root"
       },
       "queries": {
-        "insert_sleep": {
-          "hide_sql": true,
-          "sql": "INSERT INTO sleep_log (date,start,end,number_wakeups,wakeup_time,subjective_quality) VALUES (:date,:start,:end,:number_wakeups,:wakeup_time,:subjective_quality)",
-          "write": true
-        },
         "read_sleep": {
           "hide_sql": true,
-          "sql": "SELECT * FROM sleep_log ORDER BY date DESC LIMIT 20",
+          "sql": "SELECT * FROM (SELECT * FROM sleep_log ORDER BY date DESC LIMIT 7) ORDER BY date",
           "write": false
         }
       }
