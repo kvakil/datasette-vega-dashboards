@@ -25,10 +25,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const spec = JSON.parse(node.innerText);
         const values = JSON.parse(dataAsJson);
         if (isVegaLite) {
-            spec.data = {values};
+            if (spec.data === undefined) {
+                spec.data = {};
+            }
+            spec.data.values = values;
         } else {
             // Vega.
-            if (!spec.data) {
+            if (spec.data === undefined) {
                 spec.data = [];
             }
             spec.data.unshift({"name": "data", values});
